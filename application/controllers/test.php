@@ -2,6 +2,13 @@
 class Test extends MpiController {
   var $skip_before_action = "*";
 
+
+  function patient_with_fingerprint() {
+    $params = $this->filter_params(array("date_from", "date_to"));
+    $patients = Patient::with_fingerprints($params);
+    ILog::d("patients ", $patients, 1);
+  }
+
   function console(){
 
     $attrs = array("member_login" => "yourins", "site_code" => "0202", "member_pwd" => "123456");

@@ -190,6 +190,16 @@ class Imodel extends CI_Model {
     return $paginator;
   }
 
+  static function all_mapper($key=null, $conditions=array(), $order_by=null, $offset=null, $limit=null) {
+    $records = static::all($conditions=array(), $order_by=null, $offset=null, $limit=null);
+    $results = array();
+    if($key == null)
+      $key = static::primary_key();
+    foreach($records as $record)
+      $results[$record->$key] = $record;
+    return $results;
+  }
+
   static function all($conditions=array(), $order_by=null, $offset=null, $limit=null){
     $class_name = static::class_name();
     $active_record = new $class_name;

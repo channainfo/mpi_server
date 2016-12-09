@@ -1,9 +1,4 @@
 <?php
-/**
- * Site Controller
- * @author Sokha RUM
- *
- */
 class Reports extends MpiController {
 	/**
 	 * Constructor of reports controller
@@ -12,53 +7,10 @@ class Reports extends MpiController {
 		parent::__construct();
 		
 	}
-	/**
-	 * display report menu
-	 * Enter description here ...
-	 */
-    function reportmenu() {
-    	$data = array();
-    	$reports = array();
-    	
-		$reports["fingerprint"] = array();  
-		$reports["fingerprint"]["code"] = "fingerprint";
-		$reports["fingerprint"]["display"] = "Fingerprint";
-		$reports["fingerprint"]["description"] = "Fingerprint report";
-		
-		$reports["oiart"] = array();  
-		$reports["oiart"]["code"] = "oiart";
-		$reports["oiart"]["display"] = "OI/ART";
-		$reports["oiart"]["description"] = "OI/ART report";
-		
-		$reports["vcct"] = array();
-		$reports["vcct"]["code"] = "vcct";
-		$reports["vcct"]["display"] = "VCCT";
-		$reports["vcct"]["description"] = "VCCT report";
-		
-		$reports["std"] = array();
-		$reports["std"]["code"] = "std";
-		$reports["std"]["display"] = "STD";
-		$reports["std"]["description"] = "STD report";
-		
-		$reports["duplicate"] = array();
-		$reports["duplicate"]["code"] = "duplicate";
-		$reports["duplicate"]["display"] = "Duplication";
-		$reports["duplicate"]["description"] = "Duplication report";
-		
-		$reports["routine"] = array();
-		$reports["routine"]["code"] = "routine";
-		$reports["routine"]["display"] = "Routine Monitoring";
-		$reports["routine"]["description"] = "Routine monitoring report";
-    	$data["reports"] = $reports;
-    	Isession::removeAllCriteria();
-    	
-    	$this->load->template("templates/general", "reports/report_list", Iconstant::MPI_APP_NAME, $data);
+    function index() {
+    	$this->render_view();
     }
     
-    /**
-     * Control parameter
-     * Enter description here ...
-     */
     private function sumbit_report() {
     	$criteria = $_POST;
     	$criteria["cri_pro_code"] = trim($criteria["cri_pro_code"]);

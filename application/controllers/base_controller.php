@@ -22,7 +22,7 @@ class BaseController extends CI_Controller {
     $this->load->helper('form');
     $this->load->library('form_validation');
 
-    require_once BASEPATH.'core/model.php';
+    require_once BASEPATH.'core/Model.php';
 
     require_once APPPATH.'libraries/Imodel.php';
     require_once APPPATH.'libraries/api_oauth_helper.php';

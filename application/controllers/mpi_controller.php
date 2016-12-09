@@ -27,7 +27,7 @@ class MpiController extends BaseController {
     $this->load->helper('form');
     $this->load->library('form_validation');
 
-    require_once BASEPATH.'core/model.php';
+    require_once BASEPATH.'core/Model.php';
     require_once APPPATH.'libraries/Imodel.php';
     require_once APPPATH.'libraries/Isession.php';
     require_once APPPATH.'libraries/Iencryption.php';

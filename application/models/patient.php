@@ -35,6 +35,21 @@ class Patient extends Imodel {
     return array("province", 'dynamic_fields');
   }
 
+  public static function with_fingerprints($params=array()){
+    $condtions = array();
+    foreach(Patient::fingerprint_fields() as $fingerprint_name) {
+      $key = "{$fingerprint_name} IS NOT NULL";
+      $condtions[$key] = null;
+    }
+
+    if($params["date_from"])
+      $condtions["date_from >= "] = Imodel::beginning_of_day($date_from);
+    if($params["date_to"])
+      $condtions["date_to <= "] = Imodel::end_of_day($date_to);
+
+    return Patient::all_mapper("pat_id");
+  }
+
   public static function is_fingerprint_field($field_name){
     foreach(Patient::fingerprint_fields() as $fingerprint_name){
       if($fingerprint_name == $field_name)
@@ -104,6 +119,14 @@ class Patient extends Imodel {
         $result[$field_code] = $field_value;
     }
     return $result;
+  }
+
+  function identified_name(){
+    foreach(Patient::fingerprint_fields() as $fingerprint_name) {
+      if($this->has_fingerprint($fingerprint_name))
+        return $fingerprint_name;
+    }
+    return null;
   }
 
   function has_fingerprint($fingerprint_name){

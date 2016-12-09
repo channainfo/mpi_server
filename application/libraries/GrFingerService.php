@@ -10,7 +10,7 @@ class GrFingerService {
 
   static function instance() {
     if(GrFingerService::$instance) {
-      $instance = GrFingerService::$instance
+      $instance = GrFingerService::$instance;
     }
     GrFingerService::$instance = new GrFingerService();
     return GrFingerService::$instance;
